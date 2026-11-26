@@ -9,14 +9,14 @@ My Data Structures and Algorithms preparation journey using Java.
 
 | Topic | Basic | Easy | Medium | Hard | Total |
 |---|---:|---:|---:|---:|---:|
-| Arrays | 1 | 0 | 0 | 0 | 1 |
+| Arrays | 1 | 0 | 1 | 0 | 2 |
 | Strings | 0 | 0 | 0 | 0 | 0 |
 | Hashing | 0 | 0 | 0 | 0 | 0 |
 | Searching | 0 | 0 | 0 | 0 | 0 |
 | Sorting | 0 | 0 | 0 | 0 | 0 |
 | Recursion | 0 | 0 | 0 | 0 | 0 |
 
-**Total Questions Solved: 1**
+**Total Questions Solved: 2**
 
 <!-- PROGRESS_END -->
 

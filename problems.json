@@ -5,5 +5,12 @@
         "difficulty": "Basic",
         "platform": "LeetCode",
         "date": "2026-11-26"
+    },
+    {
+        "title": "Maximum Sum Subarray of Size K",
+        "topic": "Arrays",
+        "difficulty": "Medium",
+        "platform": "LeetCode",
+        "date": "2026-11-26"
     }
 ]
