@@ -22,6 +22,7 @@ My Data Structures and Algorithms preparation journey using Java.
 
 ## Languages
 - Java
+- Python
 
 ## Platforms
 - LeetCode
