@@ -1,1 +1,9 @@
-{}
+[
+    {
+        "title": "Armstrong Number",
+        "topic": "Arrays",
+        "difficulty": "Basic",
+        "platform": "LeetCode",
+        "date": "2026-11-26"
+    }
+]
