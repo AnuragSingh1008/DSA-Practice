@@ -4,8 +4,9 @@ import subprocess
 from datetime import date
 from pathlib import Path
 
-DATA_FILE = Path("problems.json")
-README_FILE = Path("README.md")
+BASE_DIR = Path(__file__).resolve().parent
+DATA_FILE = BASE_DIR / "problems.json"
+README_FILE = BASE_DIR / "README.md"
 
 TOPICS = [
     "Arrays", "Strings", "Hashing",
@@ -24,12 +25,20 @@ def load_problems():
     if not DATA_FILE.exists():
         return []
 
-    with open(DATA_FILE, "r") as file:
-        return json.load(file)
+    raw = DATA_FILE.read_text(encoding="utf-8").strip()
+    if not raw:
+        return []
+
+    data = json.loads(raw)
+    if isinstance(data, dict) and not data:
+        return []
+    if not isinstance(data, list):
+        raise ValueError("problems.json must contain a JSON list of problem records.")
+    return data
 
 
 def save_problems(problems):
-    with open(DATA_FILE, "w") as file:
+    with open(DATA_FILE, "w", encoding="utf-8") as file:
         json.dump(problems, file, indent=4)
 
 
@@ -90,7 +99,8 @@ def add_problem():
     update_readme(problems)
 
     print("\nQuestion added successfully!")
-    print("GitHub README progress updated.")
+    # Automatically upload progress to GitHub
+    sync_to_github()    
 
 
 def update_readme(problems):
@@ -169,13 +179,15 @@ def sync_to_github():
     try:
         # Stage all changes
         subprocess.run(
-            ["git", "add", "."],
+            ["git", "add", "problems.json", "README.md"],
+            cwd=BASE_DIR,
             check=True
         )
 
         # Commit changes
         result = subprocess.run(
             ["git", "commit", "-m", "Update DSA progress"],
+            cwd=BASE_DIR,
             capture_output=True,
             text=True
         )
@@ -192,6 +204,7 @@ def sync_to_github():
         # Push to GitHub
         subprocess.run(
             ["git", "push", "origin", "main"],
+            cwd=BASE_DIR,
             check=True
         )
 
@@ -208,19 +221,19 @@ def main():
         print("1. Add completed question")
         print("2. View progress")
         print("3. Exit")
-        print("4. Sync with GitHub")
 
         choice = input("Choose option: ").strip()
 
         if choice == "1":
             add_problem()
+
         elif choice == "2":
             show_progress()
+
         elif choice == "3":
             print("Goodbye!")
             break
-        elif choice == "4":
-            sync_to_github()
+
         else:
             print("Invalid choice.")
 
